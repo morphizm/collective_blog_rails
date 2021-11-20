@@ -6,7 +6,7 @@ ARG PACKAGES="nodejs yarn postgresql-client curl bash tzdata build-base postgres
 
 RUN apk update && apk upgrade && apk add --update --no-cache $PACKAGES
 
-COPY Gemfile* /app
+COPY Gemfile* ./
 
 RUN bundle config set no-cache 'true' && bundle install --jobs 4
 
