@@ -14,7 +14,7 @@ test:
   <<: *default
   database: app_test
 
-production:
-  <<: *default
-  url: <%= ENV['DB_URL'] %>
-  database: <%= ENV['DB_NAME'] %>
+# production:
+#   <<: *default
+#   url: <%= ENV['DB_URL'] %>
+#   database: <%= ENV['DB_NAME'] %>
