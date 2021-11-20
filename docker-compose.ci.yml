@@ -19,7 +19,7 @@ services:
       context: .
       dockerfile: Dockerfile.production
     working_dir: /app
-    command: bash -c 'make lint && make test'
+    command: bash -c 'bundle install && make lint && make test'
     volumes: *shared-volumes
     environment:
       <<: *shared-environment
