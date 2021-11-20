@@ -1,0 +1,38 @@
+version: '3.9'
+
+x-shared-environment: &shared-environment
+  RAILS_PORT: 3000
+  BUNDLE_PATH: /bundle_cache
+  GEM_HOME: /bundle_cache
+  GEM_PATH: /bundle_cache
+  REDIS_URL: redis://redis:6379
+  DB_HOST: db
+  DB_USER: postgres
+
+x-shared-volumes: &shared-volumes
+  - .:/app:cached
+  - ~/.bash_history:/root/.bash_history
+  - bundle_cache:/bundle_cache
+
+services:
+  app:
+    build: .
+    working_dir: /app
+    command: bundle exec rails s -b '0.0.0.0'
+    ports:
+      - '3000:3000'
+    volumes: *shared-volumes
+    environment:
+      <<: *shared-environment
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14.1-alpine
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+
+volumes:
+  bundle_cache:
