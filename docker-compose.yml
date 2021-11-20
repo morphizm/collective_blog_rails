@@ -8,6 +8,7 @@ x-shared-environment: &shared-environment
   REDIS_URL: redis://redis:6379
   DB_HOST: db
   DB_USER: postgres
+  DB_PASSWORD: postgres
 
 x-shared-volumes: &shared-volumes
   - .:/app:cached
