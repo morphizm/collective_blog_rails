@@ -1,0 +1,12 @@
+require:
+  - rubocop-rails
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/environments/*'
+
+Style/ClassAndModuleChildren:
+  Enabled: false
